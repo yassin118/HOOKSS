@@ -2,7 +2,10 @@ import './App.css';
 import { useState } from 'react';
 import Sidenavbar from './components/Sidenavbar';
 import Nav from './components/Nav';
+import {  Route, Routes } from 'react-router-dom';
+import Trailer from './components/Trailer';
 
+import MovieList from './components/MovieList';
 
 
 function App() {
@@ -43,21 +46,30 @@ function App() {
   };
   
 
-
-
   
   return (
-
       <div className="main5">
-          <div className="main70">
-            <Sidenavbar  addMovies={addMovie}/>
-            <Nav search={search}  rate={rate}  setSearch={setSearch} setRate={setRate}/>
-            
-          </div>
-          
+        <Nav search={search}  rate={rate}  setSearch={setSearch} setRate={setRate}/>
+        <Sidenavbar  addMovies={addMovie}/>
+        <Trailer movies={movieList} />
+        <MovieList className="cards"
+                  movies= {movieList} 
+                  search={search}
+                  rate={rate}
+                 
+                />
+
+        <Routes>
+          <Route className="main70">
+              <Route exact path="/">
+                
+              </Route>
+              <Route path="/Trailer/:id">
+                
+              </Route>
+              </Route>
+          </Routes>
       </div>
-      
-  
   );
 }
 

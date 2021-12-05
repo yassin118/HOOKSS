@@ -1,43 +1,22 @@
 import React from 'react'
-import { useState } from 'react';
+import { Link } from 'react-router-dom'
 
 
-const Addmovie = ({ addMovies }) => {
-    const [add, setAdd] = useState(false); 
-    const [title, setTitle] = useState("");
-    const [poster, setPoster] = useState("");
-    const [description, setDescription] = useState("");
-    const [rate, setRate] = useState(0);
 
-
-    const handleSubmit = (e) => {
-        addMovies({ title, poster, description, rate });
-        e.preventDefault();
-    };
-
-    
-    
+function MovieCard({ movie }) {
     return (
-        <div>
-            
-        <button type="button" class="btn btn-primary btn-rounded" onClick={() => setAdd(true)}><b>Add movie ➕</b></button>
-        {add ? <div className="insideT">
-            
-            <button onClick={() => setAdd(false)} type="button" class="btn-close" aria-label="Close"></button>
-            <div className="text66">
-                <form className="addform" onSubmit={handleSubmit}>
-                    <input placeholder="title" type="text" id="title" name="title" onChange={(e) => setTitle(e.target.value)} />
-                    <input placeholder="poster" type="url" id="poster" name="poster" onChange={(e) => setPoster(e.target.value)} />
-                    <label htmlFor="description">Description :</label>
-                    <textarea name="decription" id="description" onChange={(e) => setDescription(e.target.value)} />
-                    <label htmlFor="description">Rate :</label>
-                    <input className="ratefilm" type="number" name="rate" id="rate" onChange={(e) => setRate(Number(e.target.value))} />
-                    <button className="button55" type="submit">Add Movie</button>
-                </form>
+    <div>
+        <Link className="link-2" to={`/Trailer/${movie.id}`}>
+            <div className="image-container">
+                <div>
+                    <rate className="stars1" value={movie.rate} editing={false} />
+                </div>
+                <img style={{width:"150px", height:"200px"}} src={movie.poster} alt={movie.title}></img>
+                <b><h6 className="title-img">{movie.title}</h6></b>
             </div>
-        </div> : null}
-        </div>
+        </Link>
+    </div>
     )
-}
+} 
 
-export default Addmovie
+export default MovieCard
